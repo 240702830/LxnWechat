@@ -1,0 +1,197 @@
+<!--pages/company/purchasedetail/purchasedetail.wxml-->
+<view class="weui-search-bar weui-search-bar-tb">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="weui-search-bar__text">搜索</view>
+    </label>
+  </view>
+  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+</view>
+
+
+<!-- 模态框 -->
+  
+<!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view> 
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+  
+ <!--drawer content-->
+ <view class="drawer_title">{{popGoodsName}}</view> 
+ <view class="drawer_content"> 
+ <view class="top grid"> 
+ <label class="title col-0">请购量</label> 
+ <view class="placeholder">{{popBuyQuantity}}</view> 
+ <label class="title col-0">仓库数量</label> 
+ <view class="placeholder">{{popStockNum}}</view> 
+ </view> 
+ <view class="top grid"> 
+ <label class="title col-0">采购量</label> 
+ <input class="input_base input_h30 col-1" bindinput="bindpopQuantity" value="{{popQuantity}}"></input> 
+ </view> 
+ <view class="top grid"> 
+ <view class="bottom grid"> 
+ <label class="title col-0">采购小计</label> 
+ <input class="input_base input_h30 col-1 totaltxt" bindinput="bindpopSumPrice" value="{{popSumPrice}}"></input> 
+ <label class="title col-0">采购单价</label> 
+ <view class="placeholder">{{popUnitPrice}}</view> 
+ </view>  
+ </view> 
+ <view class="bottom grid"> 
+ <label class="title col-0">本次数量</label> 
+ <input class="input_base input_h30 col-1" bindinput="bindpopNum" name="Email" value="{{popNum}}"></input> 
+ <label class="title col-0">本次金额</label> 
+ <input class="input_base input_h30 col-1" bindinput="bindpopPrice" name="Email" value="{{popPrice}}"></input> 
+ </view> 
+ <view class="bottom grid"> 
+ <label class="title col-0">备注</label> 
+ <input class="input_base input_h30 col-1" bindinput="bindpopRemark" value="{{popRemark}}"></input> 
+ </view> 
+ </view> 
+ <view class="btn_ok" bindtap="powerOk" data-statu="close">确定</view> 
+</view>
+
+
+
+<!-- <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+  <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">
+      <view>实时搜索文本</view>
+    </view>
+  </navigator>
+  <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">
+      <view>实时搜索文本</view>
+    </view>
+  </navigator>
+  <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">
+      <view>实时搜索文本</view>
+    </view>
+  </navigator>
+</view> -->
+<view>
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view>
+
+  <!--全部-->
+  <view hidden="{{currentTab!==0}}">
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th">名称</view>
+        <view class="th">请购数</view>
+        <view class="th ">单价</view>
+        <view class="th ">采购数</view>
+        <view class="th ">金额</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{GoodsName}}">
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr" wx:if="{{item.Quantity == 0}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-g" wx:elif="{{item.Quantity > item.BuyQuantity}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-w" wx:elif="{{item.Quantity == item.BuyQuantity}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-b" wx:elif="{{item.Quantity < item.BuyQuantity}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr" wx:else>
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+      </block>
+    </view>
+
+
+
+  </view>
+
+  <!--已采购-->
+  <view hidden="{{currentTab!==1}}">
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th">名称</view>
+        <view class="th">请购数</view>
+        <view class="th ">单价</view>
+        <view class="th ">采购数</view>
+        <view class="th ">金额</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{GoodsName}}">
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-g" wx:if="{{item.Quantity > item.BuyQuantity}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-w" wx:elif="{{item.Quantity == item.BuyQuantity}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr bg-b" wx:elif="{{item.Quantity < item.BuyQuantity && item.Quantity > 0}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!--未采购-->
+  <view hidden="{{currentTab!==2}}">
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th">名称</view>
+        <view class="th">请购数</view>
+        <view class="th ">单价</view>
+        <view class="th ">采购数</view>
+        <view class="th ">金额</view>
+      </view>
+      <block wx:for="{{listData}}" wx:key="{{GoodsName}}">
+        <view bindtap="powerDrawer" data-GoodsNo="{{item.Id}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr" wx:if="{{item.Quantity == 0}}">
+          <view class="td">{{item.GoodsName}}</view>
+          <view class="td">{{item.BuyQuantity}}{{item.UnitType}}</view>
+          <view class="td">{{item.UnitPrice}}</view>
+          <view class="td">{{item.Quantity}}</view>
+          <view class="td">{{item.SumPrice}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

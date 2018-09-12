@@ -1,0 +1,32 @@
+<!--pages/company/purchase/purchase.wxml-->
+<view class="container">
+
+  <view class="page__bd">
+
+    <view class="weui-panel" bindtap="skipdetails" data-id="{{item.Id}}" data-purchaseid="{{item.PurchaseId}}" wx:for="{{arrays}}" wx:key="Id">
+    
+      <view class="weui-panel__hd">{{item.OrderNO}}</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title">{{item.PurchaseName}}</view>
+          <view class="weui-flex">
+            <view class="weui-flex__item weui-media-box__desc">
+              <view class="placeholder">金额：{{item.GoodsPayment}}</view>
+            </view>
+            <view class="weui-flex__item weui-media-box__desc">
+              <view class="placeholder">备注：{{item.Remark==null?"":item.Remark}}</view>
+            </view>
+          </view>
+          <view class="weui-media-box__info">
+            <ul>
+              <li class="weui-media-box__info__meta">{{item.ReservoirAreaName}}</li>
+              <li class="weui-media-box__info__meta">{{item.CreateTime}}</li>
+              <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.PurchaseUser}}</li>
+            </ul>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

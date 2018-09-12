@@ -1,0 +1,137 @@
+<!--pages/store/allocate/allocate.wxml-->
+
+<view class="container">
+
+  <view class="kind-list">
+    <view class="kind-list-item">
+
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-listz-text allocate-code-headtxt">调出门店:</view>
+        <picker bindchange="bindOutPickerChange" style='text-decoration:underline;' value="{{outarray}}" range="{{outarray}}" range-key="{{'Word'}}">
+          <view class="weui-input">{{outarray[outindex].Word}}</view>
+        </picker>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-listz-text allocate-code-headtxt">调入门店:</view>
+        <picker bindchange="bindIntoPickerChange" style='text-decoration:underline;' value="{{intoarray}}" range="{{intoarray}}" range-key="{{'Word'}}">
+          <view class="weui-input">{{intoarray[intoindex].Word}}</view>
+        </picker>
+      </view>
+      <view class="kind-list-item" id="view">
+        <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text allocate-code-headtxt">备注：</view>
+          <view class="kind-list-text allocate-txt">
+            <input class="input" bindinput="bindRemark" value="{{remark}}" placeholder="备注" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="kind-list-item">
+      <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text allocate-code-headtxt">条码：</view>
+        <view class="kind-list-text allocate-txt">
+          <input class="input" bindblur="bindEditCode" bindinput="changeEditCode" value="{{scancode}}" placeholder="条码/编码/名称/简拼" />
+        </view>
+        <view class="kind-list-text allocate-code-btn">
+          <button class="mini-btn" size="mini" bindtap="bindScanPro" type="default">扫码</button>
+        </view>
+      </view>
+
+      <form catchsubmit="formSubmit" catchreset="formReset">
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text allocate-code-headtxt">名称：</view>
+          <view class="kind-list-text allocate-select-name">
+            <picker bindchange="bindPickerChange" style='text-decoration:underline;' value="{{index}}" range="{{array}}" range-key="{{'Name'}}">
+              <view class="weui-input">{{array[index].Name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">编码：{{No}}</view>
+          <view class="kind-list-text">单位：{{Spec}}</view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">条码：{{BarCode}} </view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">库存：{{Stock}}</view>
+          <view class="kind-list-text">售价：{{Price}}</view>
+          <view class="kind-list-text">进价：{{CostPrice}}</view>
+        </view>
+
+        <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{OutQuantity}}" bindblur="bindInputOutQuantity" placeholder="调拨数量" />
+          </view>
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{DeliveryPrice}}" bindblur="bindInputDeliveryPrice" placeholder="调拨单价" />
+          </view>
+
+        </view>
+
+        <view class="btn-area" id="buttonContainer">
+          <button disabled="" bindtap="addDetail" type="warn">添加</button>
+        </view>
+      </form>
+
+      <!--全部-->
+      <view hidden="{{list.length == 0}}">
+        <view class="table">
+          <view class="tr bg-w">
+            <view class="th">名称</view>
+            <view class="th">数量</view>
+            <view class="th ">单价</view>
+            <view class="th ">小计</view>
+          </view>
+          <block wx:for="{{list}}">
+            <view bindtap="actionDetailTap" data-GoodsNo="{{item.ArticleId}}" data-GoodsName="{{item.Name}}" data-statu="open" class="tr">
+              <view class="td">{{item.Name}}</view>
+              <view class="td">{{item.OutQuantity}}{{item.Spec}}</view>
+              <view class="td">{{item.RequestPrice}}</view>
+              <view class="td">{{item.Total}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view hidden="{{list.length == 0}}">
+      <button bindtap="addAllocate" type="warn">调拨</button>
+    </view>
+
+  </view>
+
+
+
+  <!-- 模态框 -->
+
+  <!--mask-->
+  <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+  <!--content-->
+  <!--使用animation属性指定需要执行的动画-->
+  <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+    <!--drawer content-->
+    <view class="drawer_title">{{popGoodsName}}</view>
+    <view class="drawer_content-allocate">
+      
+      <view class="bottom grid">
+        <label class="title col-0">调拨数量</label>
+        <input class="input_base input_h30 col-1" bindinput="bindpopNum" name="digit" value="{{popNum}}"></input>
+      </view>
+      <view class="bottom grid">
+        <label class="title col-0">调拨单价</label>
+        <input class="input_base input_h30 col-1" bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
+      </view>
+      <view class="bottom grid">
+        <label class="title col-0">备注</label>
+        <input class="input_base input_h30 col-1" bindinput="bindpopRemark" value="{{popRemark}}"></input>
+      </view>
+    </view>
+    <view class="btn_ok" bindtap="powerOk" data-statu="close">确定</view>
+  </view>
+
+
+
+</view>

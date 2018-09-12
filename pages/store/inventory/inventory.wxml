@@ -1,0 +1,84 @@
+<!--pages/store/inventory/inventory.wxml-->
+
+<view class="container">
+
+  <view class="kind-list">
+    <view class="kind-list-item">
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">盘点单号：{{InventoryNo}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">门店:{{WarehouseName}}</view>
+        <view class="kind-list-text">类型:{{InventoryTypeName}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">分类:{{InventoryProductType}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+          <view class="kind-listz-text inventory-code-headtxt">货架：</view>
+         <picker bindchange="bindTypePickerChange" style='text-decoration:underline;' value="{{typearray}}" range="{{typearray}}" range-key="{{'name'}}">
+              <view class="weui-input">{{typearray[typeindex].name}}</view>
+            </picker>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">备注:{{Remark}}</view>
+      </view>
+    </view>
+
+    <view class="kind-list-item">
+      <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">条码：</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="bindEditCode"  bindinput="changeEditCode" value="{{scancode}}" placeholder="条码/编码/名称/简拼" />
+        </view>
+        <view class="kind-list-text inventory-code-btn">
+          <button class="mini-btn" size="mini" bindtap="bindScanPro" type="default">扫码</button>
+        </view>
+      </view>
+
+      <form catchsubmit="formSubmit" catchreset="formReset">
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text inventory-code-headtxt">名称：</view>
+          <view class="kind-list-text inventory-select-name">
+            <picker bindchange="bindPickerChange" style='text-decoration:underline;' value="{{index}}" range="{{array}}" range-key="{{'Name'}}">
+              <view class="weui-input">{{array[index].Name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">编码：{{No}}</view>
+          <view class="kind-list-text">单位：{{Spec}}</view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">条码：{{BarCode}} </view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view  class="hide kind-list-text">库存：{{Stock}}</view>
+          <view class="kind-list-text">售价：{{Price}}</view>
+        </view>
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text">已盘：{{AllStock}}</view>
+          <view class="kind-list-text">库房：{{DepotStock}}</view>
+          <view class="kind-list-text">货架：{{ShelfStock}}</view>
+        </view>
+
+        <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text">
+            <input type="digit" class="input inventory-writetxt"  bindinput="bindMonitorKeyboard" value="{{ActualStock}}" bindblur="bindInputActualStock" placeholder="请录入本次盘点数量" />
+          </view>
+
+        </view>
+
+    <view class="btn-area" id="buttonContainer">
+      <button disabled="" bindtap="addInventory" type="warn">添加</button>
+    </view>
+      </form>
+
+    </view>
+
+
+  </view>
+
+
+
+</view>

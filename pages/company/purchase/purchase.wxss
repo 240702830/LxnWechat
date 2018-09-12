@@ -1,0 +1,7 @@
+/* pages/company/purchase/purchase.wxss */
+@import "../../common/lib/weui.wxss";
+
+
+.weui-media-box_text .weui-media-box__title {
+    margin-bottom: 8px;
+}

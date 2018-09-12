@@ -1,0 +1,93 @@
+<!--pages/store/inventory/inventory.wxml-->
+
+<view class="container">
+
+  <view class="kind-list">
+
+    <view class="kind-list-item">
+      <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">条码：</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="bindEditCode" bindinput="changeEditCode" value="{{scancode}}" placeholder="条码/编码/名称/简拼" />
+        </view>
+        <view class="kind-list-text inventory-code-btn">
+          <button class="mini-btn" size="mini" bindtap="bindScanPro" type="default">扫码</button>
+        </view>
+      </view>
+
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text inventory-code-headtxt">名称：</view>
+        <view class="kind-list-text inventory-select-name">
+          <picker bindchange="bindPickerChange" style='text-decoration:underline;' value="{{index}}" range="{{array}}" range-key="{{'Name'}}">
+            <view class="weui-input">{{array[index].Name}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">编码：{{array[index].No}}</view>
+        <view class="kind-list-text">单位：{{array[index].Spec}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">运送：{{array[index].ShippingName}}</view>
+        <view class="kind-list-text">是否采购：{{array[index].IsPurchase}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">状态：{{array[index].StatusName}}</view>
+        <view class="kind-list-text">分类：{{array[index].CategoryName}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">属性：{{array[index].TypeName}}</view>
+        <view class="kind-list-text">计量：{{array[index].StyleName}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">保质期：{{array[index].GuaranteePeriod}}</view>
+        <view class="kind-list-text">存储条件：{{array[index].StorageCondition}}</view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">条码：{{array[index].BarCode}} </view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">供应商：{{array[index].PurchaseName}} </view>
+      </view>
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-list-text">最新进价：{{array[index].Price}}</view>
+        <view class="kind-list-text">建议售价：{{array[index].SalePrice}}</view>
+      </view>
+
+    </view>
+
+
+    <view class="kind-list-item">
+
+      <view class="kind-list-item-list" wx:for="{{storearray}}">
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">门店：{{item.ReservoirAreaName}}</view>
+        </view>
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">修改时间：{{item.LastModifyTime}}</view>
+        </view>
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">请购状态：{{item.RequestStatusName}}</view>
+          <view class="kind-list-text">销售状态：{{item.StatusName}}</view>
+        </view>
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">进价：{{item.RequestPrice}}</view>
+          <view class="kind-list-text">售价：{{item.Price}}</view>
+        </view>
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">排序：{{item.Sort}}</view>
+          <view class="kind-list-text">库存：{{item.Stock}}</view>
+        </view>
+        <view class="kind-list-item-mx">
+          <view class="kind-list-text">冻结：{{item.LockStock}}</view>
+          <view class="kind-list-text">安全：{{item.MinSafeStock}}-{{item.MaxSafeStock}}</view>
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+
+</view>

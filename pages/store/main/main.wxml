@@ -1,0 +1,67 @@
+<!--pages/store/main.wxml-->
+
+<view class="container">
+  <template data="{{title: 'swiper'}}" />
+
+  <view class="page-body">
+    <view class="page-section page-section-spacing  main-swiper">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{background}}" wx:key="*this">
+          <swiper-item>
+            <image class="loginimage" src="{{item}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="weui-grids">
+    <view wx:for="{{moduleslist}}">
+   <navigator url="{{item.url}}" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont weui-grid__icon main-iconfonts-size {{item.icon}}"></text>
+        <view class="page-section-title">{{item.name}}</view>
+      </navigator>
+    </view>
+<!-- 
+      <navigator url="../product/product" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-sousuo weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">查询</view>
+      </navigator>
+
+      <navigator url="redirect?title=redirect" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-gouwuche weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">入库</view>
+      </navigator>
+
+      <navigator url="../inventory/inventory" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-huo weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">盘点</view>
+      </navigator>
+      <navigator url="../../company/purchase/purchase" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-wodedingdan weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">采购追踪</view>
+      </navigator>
+      <navigator url="../../common/wssocket/wssocket" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-shouhuodizhi weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">调拨</view>
+      </navigator>
+      <navigator url="redirect?title=redirect" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-yijianfankui weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">调价</view>
+      </navigator>
+      <navigator url="redirect?title=redirect" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-lajixiang weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">报损</view>
+      </navigator>
+      <navigator url="redirect?title=redirect" hover-class="other-navigator-hover"  class="weui-grid">  
+      <text class="iconfont icon-wodedingdan icon-wodedingdanx weui-grid__icon main-iconfonts-size"></text>
+        <view class="page-section-title">销售</view>
+      </navigator> -->
+
+
+
+
+
+    </view>
+
+  </view>
+</view>
