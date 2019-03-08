@@ -1,15 +1,13 @@
-/* pages/store/allocate/allocate.wxss */
+/* pages/company/goods/goods.wxss */
 @import "../../common/lib/weui.wxss";
 @import "../../common/lib/mask.wxss";
+
 
 .weui-article{
   padding: 20px 15px;
   font-size: 25px;
 }
 
-.allocate-h {
-height:100px;
-}
 
 
 
@@ -57,34 +55,34 @@ padding:10rpx 30rpx 30rpx;
   height: auto;
 }
 
-.allocate-code-headtxt{
+.goods-code-headtxt{
   
   flex:0 1 auto;
 }
 
-.allocate-txt{
+.goods-txt{
   border:1rpx #ccc solid;
   width: 250rpx;
   flex: 1 1 auto;
 }
 
-.allocate-txt input{
+.goods-txt input{
   text-indent: 10rpx; 
 }
 
-.allocate-code-btn{
+.goods-code-btn{
   padding-left: 20rpx;
   width: 50rpx;
   flex: 1 1 auto;
 }
 
-.allocate-select-name{
+.goods-select-name{
   padding-left: 20rpx;
   width: 200rpx;
   flex: 1 1 1;
 }
 
-.allocate-code-btn button{
+.goods-code-btn button{
   margin-bottom:0rpx;
   padding:0 28rpx;
   line-height:2;
@@ -93,13 +91,18 @@ padding:10rpx 30rpx 30rpx;
 
 }
 
-.allocate-mx-headtxt {
+.goods-mx-headtxt {
 flex:1 1 1;
 }
 
 .writetxt {
   border:1rpx #ccc solid;
-  width: 250rpx;
+  width: 200rpx;
+  text-indent: 10rpx; 
+}
+.shorttxt {
+  border:1rpx #ccc solid;
+  width: 100rpx;
   text-indent: 10rpx; 
 }
  
@@ -109,10 +112,10 @@ flex:1 1 1;
   padding-left: 12rpx;
   line-height: 2.5;
 } 
-.kind-list-item-mx .allocate-code-headtxt, .kind-list-item-mx .allocate-select-name{
+.kind-list-item-mx .goods-code-headtxt, .kind-list-item-mx .goods-select-name{
   border-bottom: none;
 } 
-.kind-list-item-hd .allocate-code-headtxt, .kind-list-item-mx .kind-listz-text, .allocate-writetxt{
+.kind-list-item-hd .goods-code-headtxt, .kind-list-item-mx .kind-listz-text, .goods-writetxt{
   margin-left: 24rpx;
 }
 

@@ -122,13 +122,18 @@ Page({
   },
   //文本改变事件
   changeEditCode: function (e) {
+    var that = this;
     e.detail.value = e.detail.value.trim()
-    if (e.detail.value != this.data.keyword) {
-      this.setData({
+    if (e.detail.value != that.data.keyword) {
+      that.setData({
         scancode: e.detail.value,
         keyword: e.detail.value
       });
-      this.GetPro();
+      setTimeout(function () {
+        if (e.detail.value === that.data.scancode) {
+          that.GetPro();
+        }
+      }, 900);
     }
   },
   /**

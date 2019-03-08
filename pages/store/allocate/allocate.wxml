@@ -65,7 +65,7 @@
             <input type="digit" class="input writetxt" value="{{OutQuantity}}" bindblur="bindInputOutQuantity" placeholder="调拨数量" />
           </view>
           <view class="kind-list-text">
-            <input type="digit" class="input writetxt" value="{{DeliveryPrice}}" bindblur="bindInputDeliveryPrice" placeholder="调拨单价" />
+            <input type="digit" disabled="true" class="input writetxt" value="{{DeliveryPrice}}" bindblur="bindInputDeliveryPrice" placeholder="调拨单价" />
           </view>
 
         </view>
@@ -122,7 +122,7 @@
       </view>
       <view class="bottom grid">
         <label class="title col-0">调拨单价</label>
-        <input class="input_base input_h30 col-1" bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
+        <input class="input_base input_h30 col-1" disabled="true" bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
       </view>
       <view class="bottom grid">
         <label class="title col-0">备注</label>

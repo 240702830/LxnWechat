@@ -1,6 +1,7 @@
 // pages/login/login.js
-
+const domain = require('../../../config').domain
 const apihost = require('../../../config').apihost
+const org = require('../../../config').org
 
 var app = getApp()
 Page({
@@ -10,24 +11,14 @@ Page({
    */
   data: {
     LoginName: '',
-    Password: ''
+    Password: '',
+    img: ''
   },
 
   /**
    * 用户登录
    */
   loginuser: function (e) {
-    // wx.setStorage({
-    //   key: 'userinfo',
-    //   data: {
-    //     LoginName: '123',
-    //     Password: '123456',
-    //     StoreName: '东新路1',
-    //     StoreId: '181'}
-    // });
-    //       wx.switchTab({
-    //         url: '../../../pages/store/main/main'
-    //       })
 
     wx.request({
       url: apihost + 'Login/UserLogin',
@@ -77,7 +68,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    app.apirequestcool('Banner/GetAppletBanner', { "OrganizationId":org ,"Type": 1 }, function (res) {
+      if (res.data.Status == 0) {
+        that.setData({
+          img: domain + res.data.Data[0].ImgPath
+        })
+      } else {
+        that.setData({
+          img: '../../../image/pic/lxnlog2.jpg'
+        })
+        
+        wx.showToast({
+          title: res.data.Error,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
 
   /**

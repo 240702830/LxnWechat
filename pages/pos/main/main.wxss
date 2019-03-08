@@ -1,0 +1,162 @@
+/* pages/pos/main/main.wxss */
+@import "../../pos/keyboard/keypad.wxss";
+
+.btn-search {
+  height: 58rpx;
+  border-radius: 0px;
+  border-bottom-right-radius: 6.7px;
+  border-top-right-radius: 6.7px;
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+.input-search {
+  border: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  height: 41rpx;
+  width: 200rpx;
+  padding-left: 10px;
+}
+.search-cell {
+  width: 90%;
+  padding-left: 5%;
+  margin-top: 0px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+
+.code-cell {
+  width: 80%;
+  margin:0 auto;
+  text-align:center;
+  margin-bottom: 405rpx;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+
+
+.header-cell {
+  width:100%;
+  margin:0 auto;
+  margin-top: 45px;
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.header-cell__ft{
+  width: 30%;
+  color: red;
+}
+
+
+.tabel-cell {
+  background-color: beige;
+  width: 100%;
+  margin-top: 68px;
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.table{
+  display: inline-flex;
+  flex-direction: column;
+  border: 1rpx solid rgba(218, 217, 217, 1);
+  border-bottom: 0;  
+}
+
+.scrollClass {
+  width: 100%;
+  white-space: nowrap;
+  height: 100%;
+  background-color: white;
+}
+
+.table_header {
+  display: inline-flex;
+}
+
+.th {
+  display: flex;
+  flex-direction: column;
+  width: 200rpx;
+  height: 90rpx;
+  background: rgba(241, 252, 255, 1);
+  border-right: 1rpx solid rgba(218, 217, 217, 1); 
+  border-bottom: 1rpx solid rgba(218, 217, 217, 1); 
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+}
+.cell_label{
+  font-size: 26rpx;
+  color: rgba(74, 74, 74, 1);
+}
+.cell_date_label{
+  font-size: 20rpx;
+  color: rgba(74, 74, 74, 1);
+}
+.table_main {
+  display: inline-flex;
+  flex-direction: row;
+}
+.right-item{
+  display: flex;
+  flex-direction: row;
+}
+.td {
+  display: flex;
+  flex-direction: column;
+  width: 200rpx;
+  /* height: 90rpx; */
+  background: white;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid rgba(218, 217, 217, 1);
+  border-top: 0;
+  border-left:0; 
+}
+
+.table_Text_class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: rgba(55, 134, 244, 1);
+  width: 100%;
+  word-break: normal;
+  border-bottom: 1rpx solid rgba(218, 217, 217, 1);
+}
+.table_Text_last_class{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: rgba(55, 134, 244, 1);
+  width: 100%;
+  word-break: normal;
+}
+
+

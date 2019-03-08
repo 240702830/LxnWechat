@@ -133,6 +133,31 @@ App({
      
       
     }
-  }
+  },
+  // 自定义接口请求ajax
+  apirequestcool: function (url, postData, doSuccess, doFail, doComplete) {
+    debugger;
+      wx.request({
+        url: apihost + url,
+        data: postData,
+        method: 'POST',
+        success: function (res) {
+          if (typeof doSuccess == "function") {
+            res.data.Data = JSON.parse(res.data.Data);
+            doSuccess(res);
+          }
+        },
+        fail: function () {
+          if (typeof doFail == "function") {
+            doFail();
+          }
+        },
+        complete: function () {
+          if (typeof doComplete == "function") {
+            doComplete();
+          }
+        }
+      });
+  },
 
 })

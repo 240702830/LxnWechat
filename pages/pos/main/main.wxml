@@ -1,0 +1,230 @@
+<!--pages/pos/main/main.wxml-->
+
+<view class="container">
+  <view class="search-cell">
+    <view class="weui-cell__ft">
+      <label>会员号:</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="input-search" placeholder="" value="{{inputVal}}" />
+    </view>
+    <view class="weui-cell__ft">
+      <button class="btn-search" type="primary">搜索</button>
+    </view>
+    <view class="weui-cell__ft">
+      <label>积分:</label>
+    </view>
+  </view>
+
+  <view class="header-cell">
+    <view class="header-cell__ft">
+      <label>计件:2</label>
+    </view>
+    <view class="header-cell__ft">
+      <label>总额:2</label>
+    </view>
+    <view class="header-cell__ft">
+      <label>应收:2</label>
+    </view>
+  </view>
+
+
+  <view class="tabel-cell">
+
+    <scroll-view scroll-y="true"  class='scrollClass' style='height: {{scrollHeight + "px"}}'>
+      <scroll-view scroll-x="true">
+        <view class='table'>
+          <view class='table_header'>
+            <view class="th" style='width:130rpx;background-color:white'>
+              <view class='centerclass cell_label'>品名</view>
+            </view>
+            <view class='th'>
+              <view class="cell_label centerclass">原价/现价</view>
+            </view>
+            <view class='th'>
+              <view class="cell_label centerclass">数量</view>
+            </view>
+            <view class='th'>
+              <view class="cell_label centerclass">小计</view>
+            </view>
+            <view class='th'>
+              <view class="cell_label centerclass">折扣</view>
+            </view>
+          </view>
+
+
+
+          <block>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+            <view class='table_main'>
+              <view class='td' style='width:130rpx;background-color:white;'>
+                <view class="cell_label centerclass">白菜白菜白菜</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_class' bindtap='clickDoctor'>10元</view>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3斤</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3元</view>
+              </view>
+              <view class='td'>
+                <view class='table_Text_last_class' bindtap='clickDoctor'>3折</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </scroll-view>
+  </view>
+
+
+
+  <view class="code-cell">
+    <view class="weui-cell__ft">
+      <label>条码:</label>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="input-search" disabled='disabled' placeholder="" value="{{inputVal}}" />
+    </view>
+    <view class="weui-cell__ft">
+      <button class="btn-search" type="primary">扫扫</button>
+    </view>
+  </view>
+
+
+
+
+
+  <view class="vehicle-panel" style="height:430rpx;background-color:{{backgroundColor}}">
+    <block>
+      <view class="vehicle-panel-row">
+        <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button vehicle-panel-row-button-number' bindtap='vehicleTap' data-value="{{item}}" wx:for="{{keyNumber}}" style="border:{{buttonBorder}}" wx:for-index="idx"
+          wx:key="item">{{item}}</view>
+      </view>
+      <view class="vehicle-panel-row">
+        <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button' style="border:{{buttonBorder}}" wx:for="{{keyEnInput1}}" bindtap='vehicleTap' data-value="{{item}}" wx:for-index="idx" wx:key="idx">{{item}}</view>
+      </view>
+      <view class="vehicle-panel-row">
+        <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button' style="border:{{buttonBorder}}" wx:for="{{keyEnInput2}}" bindtap='vehicleTap' data-value="{{item}}" wx:for-index="idx" wx:key="idx">{{item}}</view>
+        <view hover-class="vehicle-hover" style="border:{{buttonBorder}}" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button vehicle-panel-row-button-img'>
+          <image src='./delete.svg' class='vehicle-en-button-delete' bindtap='vehicleTap' data-value="delete" mode='aspectFit'>删除</image>
+        </view>
+      </view>
+      <view class="vehicle-panel-row-last">
+        <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button vehicle-panel-row-button-last' bindtap='vehicleTap' style="border:{{buttonBorder}}" data-value="{{item}}" wx:for="{{keyEnInput3}}" wx:for-index="idx"
+          wx:key="idx">{{item}}</view>
+        <view hover-class="vehicle-hover" style="border:{{buttonBorder}}" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button vehicle-panel-ok' bindtap='vehicleTap' data-value="ok">确定</view>
+      </view>
+    </block>
+  </view>
+</view>

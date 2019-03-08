@@ -11,14 +11,14 @@
       </view>
       <view class="kind-list-item-mx" id="view">
         <view class="kind-listz-text allocate-code-headtxt">调整原因:</view>
-        <picker bindchange="bindStoragePickerChange" style='text-decoration:underline;' value="{{supplier}}" range="{{supplier}}" range-key="{{'Word'}}">
-          <view class="weui-input">{{supplier[supplierindex].Word}}</view>
+        <picker bindchange="bindRegtypePickerChange" style='text-decoration:underline;' value="{{regtype}}" range="{{regtype}}" range-key="{{'Desc'}}">
+          <view class="weui-input">{{regtype[regtypeindex].Desc}}</view>
         </picker>
       </view>
       <view class="kind-list-item-mx" id="view">
         <view class="kind-listz-text allocate-code-headtxt">调整类型:</view>
-        <picker bindchange="bindStoragePickerChange" style='text-decoration:underline;' value="{{supplier}}" range="{{supplier}}" range-key="{{'Word'}}">
-          <view class="weui-input">{{supplier[supplierindex].Word}}</view>
+        <picker bindchange="bindAdjusttypePickerChange" style='text-decoration:underline;' value="{{adjusttype}}" range="{{adjusttype}}" range-key="{{'Desc'}}">
+          <view class="weui-input">{{adjusttype[adjusttypeindex].Desc}}</view>
         </picker>
       </view>
       
@@ -72,7 +72,7 @@
         </view>
         <view class="kind-list-item-hd" id="view">
           <view class="kind-list-text allocate-txt">
-            <input class="input" bindinput="bindRemark" value="{{remark}}" placeholder="备注" />
+            <input class="input"  bindinput="bindpopRemark" value="{{popRemark}}" placeholder="备注" />
           </view>
         </view>
 
@@ -91,10 +91,10 @@
             <view class="th ">小计</view>
           </view>
           <block wx:for="{{list}}">
-            <view bindtap="actionDetailTap" data-GoodsNo="{{item.GoodsNo}}" data-GoodsName="{{item.GoodsName}}" data-statu="open" class="tr">
-              <view class="td">{{item.GoodsName}}</view>
-              <view class="td">{{item.Quantity}}{{item.Spec}}</view>
-              <view class="td">{{item.StoragePrice}}</view>
+            <view bindtap="actionDetailTap" data-GoodsNo="{{item.AdjustObjectId}}" data-GoodsName="{{item.AdjustObjectName}}" data-statu="open" class="tr">
+              <view class="td">{{item.AdjustObjectName}}</view>
+              <view class="td">{{item.AdjustObjectCount}}{{item.Spec}}</view>
+              <view class="td">{{item.CostPrice}}</view>
               <view class="td">{{item.SumPrice}}</view>
             </view>
           </block>
@@ -103,7 +103,7 @@
     </view>
 
     <view hidden="{{list.length == 0}}">
-      <button bindtap="addAllocate" type="warn">入库</button>
+      <button bindtap="addAllocate" type="warn">调整</button>
     </view>
 
   </view>
@@ -120,16 +120,16 @@
 
     <!--drawer content-->
     <view class="drawer_title">{{popGoodsName}}</view>
-    <view class="drawer_content-allocate">
+    <view class="drawer_content-allocate allocate-h">
       
       <view class="bottom grid">
         <label class="title col-0">入库数量</label>
         <input class="input_base input_h30 col-1" bindinput="bindpopNum" name="digit" value="{{popNum}}"></input>
       </view>
-      <view class="bottom grid">
+      <!-- <view class="bottom grid">
         <label class="title col-0">入库单价</label>
         <input class="input_base input_h30 col-1" bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
-      </view>
+      </view> -->
       <view class="bottom grid">
         <label class="title col-0">备注</label>
         <input class="input_base input_h30 col-1" bindinput="bindpopRemark" value="{{popRemark}}"></input>

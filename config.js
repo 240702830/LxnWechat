@@ -7,20 +7,22 @@
 
 var host = "14592619.qcloud.la"
 // var apihost = "https://wx.lxnong.com/api/"
-var wshost = "ws://wx.lxnong.com/api/"
+// var wshost = "ws://wx.lxnong.com/api/"
+var wshost = "ws://localhost:12979/api/chat"
 
+var org = "73"
 
 var domain = "https://wx.lxnong.com"
-// var wshost = "ws://localhost:35903/api/"
-// var apihost = "https://psme.xyz/api/"
 // var apihost = "https://wx.lxnong.com/api/"
-var apihost = "http://localhost:35903/api/"
+var apihost = "http://localhost:12979/api/"
 
 var config = {
 
   // 下面的地址配合云端 Server 工作
   host,
 
+  //组织Id
+  org,
   //接口地址
   domain,
   //接口地址

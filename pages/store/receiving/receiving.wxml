@@ -55,7 +55,7 @@
         </view>
         <view class="kind-list-item-mx" id="view">
           <view class="kind-list-text">条码：{{BarCode}} </view>
-          <view class="kind-list-text">建议进价：{{RequestPrice}}</view>
+          <view class="kind-list-text">{{ReceiptPriceType == 1?"锁定进价：":"建议进价："}}{{RequestPrice}}</view>
         </view>
         <view class="kind-list-item-mx" id="view">
           <view class="kind-list-text">库存：{{Stock}}</view>
@@ -68,12 +68,12 @@
             <input type="digit" class="input writetxt" value="{{StorageQuantity}}" bindblur="bindInputStorageQuantity" placeholder="入库数量" />
           </view>
           <view class="kind-list-text">
-            <input type="digit" class="input writetxt" value="{{DeliveryPrice}}" bindblur="bindInputDeliveryPrice" placeholder="入库单价" />
+            <input type="digit" disabled='{{ReceiptPriceType == 1?true:false}}' class="input writetxt" value="{{DeliveryPrice}}" bindblur="bindInputDeliveryPrice" placeholder="入库单价" />
           </view>
         </view>
         <view class="kind-list-item-hd" id="view">
           <view class="kind-list-text">
-            <input type="digit" class="input writetxt" value="{{TotalPrice}}" bindblur="bindInputTotalPrice" placeholder="入库总金额" />
+            <input type="digit" disabled='{{ReceiptPriceType == 1?true:false}}' class="input writetxt" value="{{TotalPrice}}" bindblur="bindInputTotalPrice" placeholder="入库总金额" />
           </view>
         </view>
 
@@ -129,7 +129,7 @@
       </view>
       <view class="bottom grid">
         <label class="title col-0">入库单价</label>
-        <input class="input_base input_h30 col-1" bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
+        <input class="input_base input_h30 col-1"  disabled='{{ReceiptPriceType == 1?true:false}}' bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
       </view>
       <view class="bottom grid">
         <label class="title col-0">备注</label>

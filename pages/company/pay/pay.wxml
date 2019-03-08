@@ -1,0 +1,40 @@
+<!--pages/store/inventory/inventory.wxml-->
+
+<view class="container">
+
+  <view class="kind-list">
+
+    <view class="kind-list-item">
+      <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">收款码：</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="changeEditCode" value="{{scancode}}" placeholder="条码/编码/名称/简拼" />
+        </view>
+        <view class="kind-list-text inventory-code-btn">
+          <button class="mini-btn" size="mini"  bindtap="bindScanPro" type="default">扫码</button>
+        </view>
+      </view>
+
+<view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">订单号：</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="changeEditNo" value="{{client_sn}}" placeholder="订单号" />
+        </view>
+      </view>
+
+<view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">金额(分)：</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="changeEditAmount" value="{{total_amount}}" placeholder="金额" />
+        </view>
+      </view>
+
+     
+    </view>
+  </view>
+
+        <view class="circle-float" id="buttonContainer">
+          <button class="circle-btn" bindtap="addSave" type="warn">支付</button>
+        </view>
+
+</view>

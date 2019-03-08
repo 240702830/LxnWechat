@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/store/main/main",
+    "pages/common/wssocket/wssocket",
+    "pages/pos/main/main",
+    "pages/pos/table/table",
     "pages/store/adjust/adjust",
     "pages/store/allocate/allocate",
     "pages/store/changeprice/changeprice",
@@ -12,8 +15,10 @@
     "pages/store/explain/explain",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/common/wssocket/wssocket",
-    "pages/store/receiving/receiving"
+    "pages/store/receiving/receiving",
+    "pages/company/goods/goods",
+    "pages/company/pay/pay",
+    "pages/pos/keyboard/keypad"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -10,8 +10,10 @@ Page({
     index: 0,
     shop: [],
     shopindex: 0,
-    supplier: [],
-    supplierindex: 0,
+    regtype: [],
+    regtypeindex: 0,
+    adjusttype: [],
+    adjusttypeindex: 0,
     remark: "",
     keyword: "",
     scancode: "",
@@ -24,7 +26,6 @@ Page({
     Price: '',
     CostPrice: '',
     RequestPrice: '',
-    DeliveryPrice: '',
     TotalPrice: '',
     StorageQuantity: '',
     popGoodsId: '',
@@ -43,9 +44,33 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.GetShop();
+    that.GetInitData();
     that.GetSupplier();
   },
 
+
+  /**
+   * 获取门店
+   */
+  GetInitData: function () {
+    var that = this;
+    app.apirequest('Adjust/GetInitData', {}, function (res) {
+      if (res.data.Status == 0) {
+        that.setData({
+          regtypeindex: 0,
+          regtype: res.data.Data.AdjustType,
+          adjusttypeindex: 0,
+          adjusttype: res.data.Data.Type
+        })
+      } else {
+        wx.showToast({
+          title: res.data.Error,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
 
   /**
    * 获取门店
@@ -68,11 +93,11 @@ Page({
     })
   },
   /**
-   * 获取供应商
+   * 获取调整原因
    */
-  GetSupplier: function () {
+  GetRegtype: function () {
     var that = this;
-    app.apirequest('Common/SearchResult', { "comType": 'purchase', "reservoirAreaId": 0 }, function (res) {
+    app.apirequest('Common/SearchResult', { "comType": 's_AdjustType', "reservoirAreaId": 0 }, function (res) {
       if (res.data.Status == 0) {
         that.setData({
           supplierindex: 0,
@@ -136,7 +161,7 @@ Page({
   GetPro: function () {
     var that = this;
     if (that.data.scancode != "") {
-      app.apirequest('Product/GetProductDtoList', { "Name": that.data.scancode, "ReservoirAreaId": this.data.shop[this.data.shopindex].Id, "Supplier": this.data.supplier[this.data.supplierindex].Id, "Index": 7 }, function (res) {
+      app.apirequest('Product/GetProductDtoList', { "Name": that.data.scancode, "ReservoirAreaId": this.data.shop[this.data.shopindex].Id }, function (res) {
         if (res.data.Status == 0) {
           that.setData({
             index: 0,
@@ -169,8 +194,9 @@ Page({
       Price: that.data.array[that.data.index].Price,
       CostPrice: that.data.array[that.data.index].CostPrice,
       RequestPrice: that.data.array[that.data.index].RequestPrice,
-      DeliveryPrice: that.data.array[that.data.index].CostPrice,
+      CostPrice: that.data.array[that.data.index].CostPrice,
       StorageQuantity: "",
+      popRemark: "",
       TotalPrice: ""
     })
   },
@@ -200,20 +226,35 @@ Page({
         shopindex: e.detail.value
       })
     }
-
+  },
+  /**
+   * 下拉改变值事件
+   */
+  bindRegtypePickerChange: function (e) {
+      this.setData({
+        regtypeindex: e.detail.value
+      })
+  },
+  /**
+   * 下拉改变值事件
+   */
+  bindAdjusttypePickerChange: function (e) {
+      this.setData({
+        adjusttypeindex: e.detail.value
+      })
   },
 
   //入库数量
   bindInputStorageQuantity: function (e) {
     this.setData({
       StorageQuantity: e.detail.value,
-      TotalPrice: parseFloat(e.detail.value * this.data.DeliveryPrice).toFixed(2)
+      TotalPrice: parseFloat(e.detail.value * this.data.CostPrice).toFixed(2)
     });
   },
   //入库单价
   bindInputDeliveryPrice: function (e) {
     this.setData({
-      DeliveryPrice: e.detail.value,
+      CostPrice: e.detail.value,
       TotalPrice: parseFloat(e.detail.value * this.data.StorageQuantity).toFixed(2)
     });
   },
@@ -221,7 +262,7 @@ Page({
   bindInputTotalPrice: function (e) {
     this.setData({
       TotalPrice: e.detail.value,
-      DeliveryPrice: e.detail.value / this.data.StorageQuantity
+      CostPrice: e.detail.value / this.data.StorageQuantity
     });
   },
   /**
@@ -241,7 +282,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
-    } else if (that.data.DeliveryPrice == "") {
+    } else if (that.data.CostPrice == "") {
       wx.showToast({
         title: "请填写本次入库单价",
         icon: 'none',
@@ -252,7 +293,7 @@ Page({
       var lists = that.data.list;
 
       for (var i = 0; i < lists.length; i++) {
-        if (lists[i].GoodsNo == that.data.array[that.data.index].Id) {
+        if (lists[i].AdjustObjectId == that.data.array[that.data.index].Id) {
           wx.showToast({
             title: "该商品已添加，请单击列表编辑",
             icon: 'none',
@@ -263,14 +304,13 @@ Page({
       }
 
       var model = {
-        "GoodsNo": that.data.array[that.data.index].Id,
-        "GoodsName": that.data.array[that.data.index].Name,
+        "AdjustObjectId": that.data.array[that.data.index].Id,
+        "AdjustObjectName": that.data.array[that.data.index].Name,
         "Spec": that.data.array[that.data.index].Spec,
-        "UnitTypeId": 0,
-        "StoragePrice": that.data.DeliveryPrice,
-        "Quantity": that.data.StorageQuantity,
-        "Remark": "",
-        "SumPrice": ((that.data.DeliveryPrice * that.data.StorageQuantity * 100) / 100).toFixed(2)
+        "CostPrice": that.data.CostPrice,
+        "AdjustObjectCount": that.data.StorageQuantity,
+        "Remark": that.data.popRemark,
+        "SumPrice": ((that.data.CostPrice * that.data.StorageQuantity * 100) / 100).toFixed(2)
       }
       lists.unshift(model)
       this.setData({
@@ -329,13 +369,13 @@ Page({
     // 显示 
     if (currentStatu.statu == "open") {
       for (var i = 0; i < that.data.list.length; i++) {
-        if (that.data.list[i].GoodsNo == currentStatu.goodsno) {
+        if (that.data.list[i].AdjustObjectId == currentStatu.goodsno) {
           that.setData(
             {
-              popGoodsId: that.data.list[i].GoodsNo,
-              popGoodsName: that.data.list[i].GoodsName,
-              popNum: that.data.list[i].Quantity,
-              popPrice: that.data.list[i].StoragePrice,
+              popGoodsId: that.data.list[i].AdjustObjectId,
+              popGoodsName: that.data.list[i].AdjustObjectName,
+              popNum: that.data.list[i].AdjustObjectCount,
+              popPrice: that.data.list[i].CostPrice,
               popRemark: that.data.list[i].Remark,
               showModalStatus: true
             }
@@ -356,7 +396,7 @@ Page({
           ///删除
           let lists = that.data.list;
           for (var i = 0; i < lists.length; i++) {
-            if (lists[i].GoodsNo == currentStatu.goodsno) {
+            if (lists[i].AdjustObjectId == currentStatu.goodsno) {
               lists.splice(i, 1)
               that.setData({
                 list: lists
@@ -393,9 +433,9 @@ Page({
       // /修改
       let lists = that.data.list;
       for (var i = 0; i < lists.length; i++) {
-        if (lists[i].GoodsNo == that.data.popGoodsId) {
-          lists[i].Quantity = that.data.popNum;
-          lists[i].StoragePrice = that.data.popPrice;
+        if (lists[i].AdjustObjectId == that.data.popGoodsId) {
+          lists[i].AdjustObjectCount = that.data.popNum;
+          lists[i].CostPrice = that.data.popPrice;
           lists[i].Remark = that.data.popRemark;
           lists[i].SumPrice = ((that.data.popNum * that.data.popPrice * 100) / 100).toFixed(2);
         }
@@ -459,7 +499,7 @@ Page({
       that.setData({
         issubmit: true
       });
-      app.apirequest('PurchaseStorage/Save', { "WarehouseId": that.data.shop[that.data.shopindex].Id, "PurchaseId": that.data.supplier[that.data.supplierindex].Id, "Remark": that.data.remark, "psdList": that.data.list }, function (res) {
+      app.apirequest('Adjust/Save', { "WarehouseId": that.data.shop[that.data.shopindex].Id, "WarehouseName": that.data.shop[that.data.shopindex].Word, "AdjustType": that.data.adjusttype[that.data.adjusttypeindex].Id, "Type": that.data.regtype[that.data.regtypeindex].Id, "Remark": that.data.remark, "AjdList": that.data.list }, function (res) {
         if (res.data.Status == 0) {
           wx.showToast({
             title: res.data.Error,
