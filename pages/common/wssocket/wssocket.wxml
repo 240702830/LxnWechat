@@ -1,2 +1,30 @@
 <!--pages/common/wssocket/wssocket.wxml-->
 <text>pages/common/wssocket/wssocket.wxml</text>
+
+
+
+      <view class="weui-panel__hd">提示:{{item.OrderNO}}</view>
+
+     <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">单发:</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="changexiaoxi" value="{{xiaoxi}}" placeholder="单发" />
+        </view>
+      </view>
+    
+        <view class="circle-float" id="buttonContainer">
+          <button class="circle-btn" bindtap="send" type="warn">发送</button>
+        </view>
+   <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text inventory-code-headtxt">用户名:</view>
+        <view class="kind-list-text inventory-txt">
+          <input class="input" bindblur="changeName" value="{{name}}" placeholder="用户名" />
+        </view>
+      </view>
+
+        <view class="circle-float" id="buttonContainer">
+          <button class="circle-btn" bindtap="open" type="warn">建立连接</button>
+        </view>
+        <view class="circle-float" id="buttonContainer">
+          <button class="circle-btn" bindtap="close" type="warn">关闭连接</button>
+        </view>

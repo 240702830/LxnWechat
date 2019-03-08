@@ -4,7 +4,8 @@
   <view class="page-body">
     <view class="page-section page-section-gap">
       <view class="page-section-ctn">
-        <image class="loginimage" src="../../../image/pic/lxnlog2.jpg"></image>
+        <!-- <image class="loginimage" src="../../../image/pic/lxnlog2.jpg"></image> -->
+        <image class="loginimage" src="{{img}}"></image>
       </view>
     </view>
 

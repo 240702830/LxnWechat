@@ -1,0 +1,130 @@
+<!--pages/company/goods/goods.wxml-->
+
+<view class="container">
+
+  <view class="kind-list">
+    <view class="kind-list-item">
+        <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text goods-code-headtxt">编码：</view>
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{No}}" bindblur="bindInputNo" placeholder="编码" />
+          </view>
+          <view class="kind-list-text goods-code-headtxt">名称：</view>
+          <view class="kind-list-text">
+            <input type="input" class="input writetxt" value="{{Name}}" bindblur="bindInputName" placeholder="名称" />
+          </view>
+        </view>
+    
+
+        <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text goods-code-headtxt">进价：</view>
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{Price}}" bindblur="bindInputPrice" placeholder="建议进价" />
+          </view>
+          <view class="kind-list-text goods-code-headtxt">售价：</view>
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{SalePrice}}" bindblur="bindInputSalePrice" placeholder="建议售价" />
+          </view>
+        </view>
+
+        <view class="kind-list-item-mx" id="view">
+          <view class="kind-list-text goods-code-headtxt">计量方式：</view>
+          <view class="kind-list-text goods-select-name">
+            <picker bindchange="bindStylePickerChange" style='text-decoration:underline;' value="{{styleindex}}" range="{{stylelist}}" range-key="{{'TextBack'}}">
+              <view class="weui-input">{{stylelist[styleindex].TextBack}}</view>
+            </picker>
+          </view>
+        </view>
+
+
+
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-listz-text goods-code-headtxt">供应商:</view>
+          <input type="input" class="input shorttxt" value="{{supkey}}" bindblur="bindInputSupKey" placeholder="搜索" />
+        <picker bindchange="bindSupplierPickerChange" style='text-decoration:underline;' value="{{supplier}}" range="{{supplier}}" range-key="{{'Word'}}">
+          <view class="weui-input">{{supplier[supplierindex].Word}}</view>
+        </picker>
+      </view>
+
+
+
+      <view class="kind-list-item-mx" id="view">
+        <view class="kind-listz-text goods-code-headtxt">分类:</view>
+          <input type="input" class="input shorttxt" value="{{classifykey}}" bindblur="bindInputClassifyKey" placeholder="搜索" />
+        <picker bindchange="bindClassifyPickerChange" style='text-decoration:underline;' value="{{classify}}" range="{{classify}}" range-key="{{'ClassName'}}">
+          <view class="weui-input">{{classify[classifyindex].ClassName}}</view>
+        </picker>
+      </view>
+
+      <view class="kind-list-item-hd" id="view">
+        <view class="kind-list-text goods-code-headtxt">条码：</view>
+        <view class="kind-list-text goods-txt">
+          <input class="input" bindblur="bindEditCode" value="{{scancode}}" placeholder="条码" />
+        </view>
+        <view class="kind-list-text goods-code-btn">
+          <button class="mini-btn" size="mini" bindtap="bindScanPro" type="default">扫码</button>
+        </view>
+      </view>
+
+         <view class="kind-list-item-hd" id="view">
+          <view class="kind-list-text goods-code-headtxt">单位:</view>
+          <view class="kind-list-text">
+            <input type="input" class="input writetxt" value="{{Spec}}" bindblur="bindInputSpec" placeholder="kg/包/个/盒..." />
+          </view>
+          <view class="kind-list-text goods-code-headtxt">保质期：</view>
+          <view class="kind-list-text">
+            <input type="digit" class="input writetxt" value="{{GuaranteePeriod}}" bindblur="bindInputGuaranteePeriod" placeholder="保质期" />
+          </view>
+        </view>
+      
+    </view>
+    <view class="kind-list-item">
+      <view class="kind-list-item-hd" id="view">
+       <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox">
+          <checkbox checked="true" />
+          添加到所有报价组
+        </label>
+      </checkbox-group>
+      </view>
+    </view>
+
+    <view hidden="{{list.length == 0}}">
+      <button bindtap="addgoods" type="warn">新增</button>
+    </view>
+
+  </view>
+
+
+
+  <!-- 模态框 -->
+
+  <!--mask-->
+  <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+  <!--content-->
+  <!--使用animation属性指定需要执行的动画-->
+  <view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+    <!--drawer content-->
+    <view class="drawer_title">{{popGoodsName}}</view>
+    <view class="drawer_content-goods">
+      
+      <view class="bottom grid">
+        <label class="title col-0">入库数量</label>
+        <input class="input_base input_h30 col-1" bindinput="bindpopNum" name="digit" value="{{popNum}}"></input>
+      </view>
+      <view class="bottom grid">
+        <label class="title col-0">入库单价</label>
+        <input class="input_base input_h30 col-1"  disabled='{{ReceiptPriceType == 1?true:false}}' bindinput="bindpopPrice" name="digit" value="{{popPrice}}"></input>
+      </view>
+      <view class="bottom grid">
+        <label class="title col-0">备注</label>
+        <input class="input_base input_h30 col-1" bindinput="bindpopRemark" value="{{popRemark}}"></input>
+      </view>
+    </view>
+    <view class="btn_ok" bindtap="powerOk" data-statu="close">确定</view>
+  </view>
+
+
+
+</view>

@@ -1,11 +1,15 @@
 // pages/store/main.js
+var app = getApp()
+const domain = require('../../../config').domain
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    background: ['../../../image/pic/lxnlogin.jpg', '../../../image/pic/lxncxy.jpg', '../../../image/pic/lxnpl.jpg'],
+    // background: ['../../../image/pic/lxnlogin.jpg', '../../../image/pic/lxncxy.jpg', '../../../image/pic/lxnpl.jpg'],
+    background: [],
     indicatorDots: true,
     vertical: true,
     autoplay: true,
@@ -64,6 +68,14 @@ Page({
         }, {
           name: '采购追踪',
           url: '../../store/purchase/purchase',
+          icon: 'icon-wodedingdan'
+        }, {
+          name: '支付',
+          url: '../../company/pay/pay',
+          icon: 'icon-wodedingdan'
+        }, {
+          name: '新增商品',
+          url: '../../company/goods/goods',
           icon: 'icon-wodedingdan'
         }
       ],
@@ -169,8 +181,26 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
+    app.apirequest('Banner/GetAppletBanner', { "Type": 3 }, function (res) {
+      if (res.data.Status == 0) {
+        let arr = new  Array();
+        for (var i = 0; i < res.data.Data.length; i++) {
+          arr.push(domain + res.data.Data[i].ImgPath);
+        }
+        that.setData({
+          background: arr
+        })
+      } else {
+        wx.showToast({
+          title: res.data.Error,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
+
     var modules = [];
     var moduless = [];
 

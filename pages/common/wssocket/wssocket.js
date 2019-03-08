@@ -1,6 +1,9 @@
 // pages/common/wssocket/wssocket.js
 const wshost = require('../../../config').wshost
 const apihost = require('../../../config').apihost
+var ws; 
+var url = "http://localhost:12979/WebSocket/ProcessRequest"; 
+
 
 Page({
 
@@ -26,35 +29,38 @@ Page({
       })
       return
     }else{
-      //建立连接
-      wx.connectSocket({
-        url: wshost + "WsChat/GetInfo",
-        method: "POST",
-        data: {"Id":1}
-      })
-
-      //连接成功
-      wx.onSocketOpen(function () {
-        wx.sendSocketMessage({
-          data: 'stock',
-        })
-      })
-
-
-      //接收数据
-      wx.onSocketMessage(function (data) {
-        console.log(data);
-      })
-
-      //连接失败
-      wx.onSocketError(function () {
-        console.log('websocket连接失败！');
-      })
+      
     }
-
-
   },
 
+  /**
+   * 打开连接
+   */
+  open: function () {
+    //建立连接
+    wx.connectSocket({
+      url: wshost + "?userKey=123",
+      method: "Get"
+    })
+
+    //连接成功
+    wx.onSocketOpen(function () {
+      wx.sendSocketMessage({
+        data: 'stock',
+      })
+    })
+
+
+    //接收数据
+    wx.onSocketMessage(function (data) {
+      console.log(data);
+    })
+
+    //连接失败
+    wx.onSocketError(function () {
+      console.log('websocket连接失败！');
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
