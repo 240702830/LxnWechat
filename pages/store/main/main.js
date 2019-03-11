@@ -129,6 +129,11 @@ Page({
           name: '库存调整',
           url: '../adjust/adjust',
           icon: 'icon-lajixiang'
+        },
+        {
+          name: '销售日报',
+          url: '../salechart/salechart',
+          icon: 'icon-wodedingdan'
         }, 
         // {
         //   name: '销售',

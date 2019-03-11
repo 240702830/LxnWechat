@@ -18,7 +18,8 @@
     "pages/store/receiving/receiving",
     "pages/company/goods/goods",
     "pages/company/pay/pay",
-    "pages/pos/keyboard/keypad"
+    "pages/pos/keyboard/keypad",
+    "pages/store/salechart/salechart"
   ],
   "window": {
     "backgroundTextStyle": "light",
